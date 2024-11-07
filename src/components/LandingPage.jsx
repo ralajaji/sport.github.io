@@ -46,7 +46,7 @@ export default function LandingPage() {
         <section className="relative min-h-[600px] lg:min-h-[700px] flex items-center">
           <div className="absolute inset-0 overflow-hidden">
             <img 
-              src={import.meta.env.BASE_URL + "/src/assets/soccer-field.jpg" }
+              src={"https://ralajaji.github.io/sport.github.io/src/assets/soccer-field.jpg" }
               alt="Soccer Field" 
               className="w-full h-full object-cover object-center"
             />
