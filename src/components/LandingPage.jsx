@@ -8,6 +8,7 @@ import {
   ChevronDownIcon,
 } from '@heroicons/react/24/outline'
 import { useTranslation } from '../contexts/LanguageContext'
+import image from '../assets/soccer-field.jpg'
 
 export default function LandingPage() {
   const { t } = useTranslation()
@@ -46,7 +47,7 @@ export default function LandingPage() {
         <section className="relative min-h-[600px] lg:min-h-[700px] flex items-center">
           <div className="absolute inset-0 overflow-hidden">
             <img 
-              src="/src/assets/soccer-field.jpg" 
+              src={image} 
               alt="Soccer Field" 
               className="w-full h-full object-cover object-center"
             />
