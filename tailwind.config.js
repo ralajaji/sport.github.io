@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+import tailwindcssRtl from 'tailwindcss-rtl'; // import instead of require
+
 export default {
   content: [
     "./index.html",
@@ -13,6 +15,6 @@ export default {
     },
   },
   plugins: [
-    require('tailwindcss-rtl'),
+    tailwindcssRtl, // using the imported version
   ],
-} 
+}
