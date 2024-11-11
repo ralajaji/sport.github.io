@@ -1,53 +1,51 @@
-import { useState } from 'react'
-import { supabase } from '../lib/supabase'
-import toast from 'react-hot-toast'
+import { useState } from "react";
+import { supabase } from "../lib/supabase";
+import toast from "react-hot-toast";
 import {
   ClipboardDocumentCheckIcon,
   UserGroupIcon,
   CreditCardIcon,
   ChevronDownIcon,
-} from '@heroicons/react/24/outline'
-import { useTranslation } from '../contexts/LanguageContext'
+} from "@heroicons/react/24/outline";
+import { useTranslation } from "../contexts/LanguageContext";
 
 export default function LandingPage() {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    role: t('form.roles.organizer')
-  })
-  const [loading, setLoading] = useState(false)
+    name: "",
+    phone: "",
+    role: t("form.roles.organizer"),
+  });
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    setLoading(true)
+    e.preventDefault();
+    setLoading(true);
 
     try {
-      const { error } = await supabase
-        .from('users')
-        .insert([{ ...formData }])
+      const { error } = await supabase.from("users").insert([{ ...formData }]);
 
-      if (error) throw error
+      if (error) throw error;
 
-      toast.success('شكراً لانضمامك إلى قائمة الانتظار!')
-      setFormData({ name: '', email: '', role: t('form.roles.organizer') })
+      toast.success("شكراً لانضمامك إلى قائمة الانتظار!");
+      setFormData({ name: "", phone: "", role: t("form.roles.organizer") });
     } catch (error) {
-      toast.error('حدث خطأ. يرجى المحاولة مرة أخرى.')
-      console.error(error)
+      toast.error("حدث خطأ. يرجى المحاولة مرة أخرى.");
+      console.error(error);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-gray-50 to-white">
-      <div className="w-full max-w-7xl mx-auto">
+      <div className="w-full">
         {/* Hero Section */}
-        <section className="relative min-h-[600px] lg:min-h-[700px] flex items-center">
+        <section className="relative min-h-screen flex items-center">
           <div className="absolute inset-0 overflow-hidden">
-            <img 
-              src='https://static.vecteezy.com/system/resources/thumbnails/027/829/023/small_2x/close-up-of-many-soccer-players-kicking-a-football-on-a-field-competition-scene-created-with-generative-ai-technology-free-photo.jpg'
-              alt="Soccer Field" 
+            <img
+              src="https://static.vecteezy.com/system/resources/thumbnails/027/829/023/small_2x/close-up-of-many-soccer-players-kicking-a-football-on-a-field-competition-scene-created-with-generative-ai-technology-free-photo.jpg"
+              alt="Soccer Field"
               className="w-full h-full object-cover object-center"
             />
             <div className="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
@@ -55,17 +53,17 @@ export default function LandingPage() {
           <div className="relative z-10 w-full max-w-6xl mx-auto px-6 py-20 lg:py-32">
             <div className="max-w-3xl mx-auto text-center">
               <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-                {t('hero.title')}
+                {t("hero.title")}
               </h1>
               <p className="text-lg md:text-xl text-gray-200 mb-8 max-w-2xl mx-auto">
-                {t('hero.subtitle')}
+                {t("hero.subtitle")}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a 
-                  href="#join-us" 
+                <a
+                  href="#join-us"
                   className="bg-green-500 text-white px-8 py-4 rounded-xl text-lg font-medium hover:bg-green-600 transition-all hover:scale-105 shadow-lg hover:shadow-green-500/25"
                 >
-                  {t('hero.joinButton')}
+                  {t("hero.joinButton")}
                 </a>
               </div>
             </div>
@@ -75,16 +73,29 @@ export default function LandingPage() {
         {/* How It Works */}
         <section className="py-20 lg:py-32">
           <div className="px-6">
-            <h2 className="text-2xl lg:text-4xl font-bold text-center mb-16">{t('howItWorks.title')}</h2>
+            <h2 className="text-2xl lg:text-4xl font-bold text-center mb-16">
+              {t("howItWorks.title")}
+            </h2>
             <div className="grid md:grid-cols-3 gap-8 lg:gap-16 max-w-5xl mx-auto">
-              {t('howItWorks.steps').map((step, index) => (
-                <div key={index} className="flex flex-col items-center text-center group">
+              {t("howItWorks.steps").map((step, index) => (
+                <div
+                  key={index}
+                  className="flex flex-col items-center text-center group"
+                >
                   <div className="w-16 h-16 lg:w-20 lg:h-20 bg-green-100 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-all duration-300">
-                    {index === 0 && <ClipboardDocumentCheckIcon className="w-8 h-8 lg:w-10 lg:h-10 text-green-600" />}
-                    {index === 1 && <UserGroupIcon className="w-8 h-8 lg:w-10 lg:h-10 text-green-600" />}
-                    {index === 2 && <CreditCardIcon className="w-8 h-8 lg:w-10 lg:h-10 text-green-600" />}
+                    {index === 0 && (
+                      <ClipboardDocumentCheckIcon className="w-8 h-8 lg:w-10 lg:h-10 text-green-600" />
+                    )}
+                    {index === 1 && (
+                      <UserGroupIcon className="w-8 h-8 lg:w-10 lg:h-10 text-green-600" />
+                    )}
+                    {index === 2 && (
+                      <CreditCardIcon className="w-8 h-8 lg:w-10 lg:h-10 text-green-600" />
+                    )}
                   </div>
-                  <h3 className="text-xl lg:text-2xl font-semibold mb-3">{step.title}</h3>
+                  <h3 className="text-xl lg:text-2xl font-semibold mb-3">
+                    {step.title}
+                  </h3>
                   <p className="text-gray-600">{step.description}</p>
                 </div>
               ))}
@@ -97,16 +108,20 @@ export default function LandingPage() {
             <div className="grid lg:grid-cols-2 gap-16">
               {/* Core Benefits */}
               <section className="bg-gray-50 p-8 rounded-2xl">
-                <h2 className="text-2xl lg:text-3xl font-bold mb-8">{t('benefits.title')}</h2>
+                <h2 className="text-2xl lg:text-3xl font-bold mb-8">
+                  {t("benefits.title")}
+                </h2>
                 <div className="space-y-6">
-                  {t('benefits.items').map((benefit, index) => (
+                  {t("benefits.items").map((benefit, index) => (
                     <div key={index} className="flex items-start gap-4">
                       <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
                         <span className="text-green-600 text-lg">✓</span>
                       </div>
                       <div>
                         <h3 className="font-semibold mb-1">{benefit.title}</h3>
-                        <p className="text-gray-600 text-sm">{benefit.description}</p>
+                        <p className="text-gray-600 text-sm">
+                          {benefit.description}
+                        </p>
                       </div>
                     </div>
                   ))}
@@ -115,19 +130,28 @@ export default function LandingPage() {
 
               {/* Feature Highlights */}
               <section>
-                <h2 className="text-2xl lg:text-3xl font-bold mb-8">{t('features.title')}</h2>
+                <h2 className="text-2xl lg:text-3xl font-bold mb-8">
+                  {t("features.title")}
+                </h2>
                 <div className="grid gap-4">
-                  {t('features.items').map((feature, index) => (
-                    <div key={index} className="bg-gray-50 p-6 rounded-2xl hover:bg-gray-100 transition-all hover:scale-[1.02] cursor-pointer">
+                  {t("features.items").map((feature, index) => (
+                    <div
+                      key={index}
+                      className="bg-gray-50 p-6 rounded-2xl hover:bg-gray-100 transition-all hover:scale-[1.02] cursor-pointer"
+                    >
                       <div className="flex items-center gap-4">
                         <div className="text-2xl">
-                          {index === 0 && '📅'}
-                          {index === 1 && '💳'}
-                          {index === 2 && '📊'}
+                          {index === 0 && "📅"}
+                          {index === 1 && "💳"}
+                          {index === 2 && "📊"}
                         </div>
                         <div>
-                          <h3 className="font-semibold mb-1">{feature.title}</h3>
-                          <p className="text-gray-600 text-sm">{feature.description}</p>
+                          <h3 className="font-semibold mb-1">
+                            {feature.title}
+                          </h3>
+                          <p className="text-gray-600 text-sm">
+                            {feature.description}
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -142,37 +166,47 @@ export default function LandingPage() {
         <section id="join-us" className="py-20 lg:py-32">
           <div className="max-w-md mx-auto px-6">
             <div className="bg-white p-8 rounded-2xl shadow-xl">
-              <h2 className="text-2xl lg:text-3xl font-bold text-center mb-8">{t('form.title')}</h2>
+              <h2 className="text-2xl lg:text-3xl font-bold text-center mb-8">
+                {t("form.title")}
+              </h2>
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div>
                   <input
                     type="text"
-                    placeholder={t('form.namePlaceholder')}
+                    placeholder={t("form.namePlaceholder")}
                     required
                     className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all"
                     value={formData.name}
-                    onChange={(e) => setFormData({...formData, name: e.target.value})}
+                    onChange={(e) =>
+                      setFormData({ ...formData, name: e.target.value })
+                    }
                   />
                 </div>
                 <div>
                   <input
-                    type="email"
-                    placeholder={t('form.emailPlaceholder')}
+                    type="tel"
+                    inputMode="numeric"
+                    pattern="[0-9]*"
+                    placeholder={t("form.phonePlaceholder")}
                     required
                     className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all"
-                    value={formData.email}
-                    onChange={(e) => setFormData({...formData, email: e.target.value})}
+                    value={formData.phone}
+                    onChange={(e) =>
+                      setFormData({ ...formData, phone: e.target.value })
+                    }
                   />
                 </div>
                 <div className="relative">
                   <select
                     className="w-full  px-4 py-3 rounded-xl border border-gray-200 bg-white focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all appearance-none"
                     value={formData.role}
-                    onChange={(e) => setFormData({...formData, role: e.target.value})}
+                    onChange={(e) =>
+                      setFormData({ ...formData, role: e.target.value })
+                    }
                   >
-                    <option>{t('form.roles.organizer')}</option>
-                    <option>{t('form.roles.player')}</option>
-                    <option>{t('form.roles.fieldOwner')}</option>
+                    <option>{t("form.roles.organizer")}</option>
+                    <option>{t("form.roles.player")}</option>
+                    <option>{t("form.roles.fieldOwner")}</option>
                   </select>
                   <ChevronDownIcon className="w-5 h-5 absolute left-4 top-1/2 transform -translate-y-1/2 pointer-events-none text-gray-500" />
                 </div>
@@ -181,10 +215,10 @@ export default function LandingPage() {
                   disabled={loading}
                   className="w-full bg-orange-500 text-white py-4 rounded-xl font-medium hover:bg-orange-600 transition-all hover:scale-[1.02] disabled:opacity-50 disabled:hover:scale-100"
                 >
-                  {loading ? t('form.loading') : t('form.submitButton')}
+                  {loading ? t("form.loading") : t("form.submitButton")}
                 </button>
                 <p className="text-sm text-center text-gray-500">
-                  {t('form.discount')}
+                  {t("form.discount")}
                 </p>
               </form>
             </div>
@@ -196,9 +230,15 @@ export default function LandingPage() {
           <div className="max-w-5xl mx-auto px-6">
             <div className="flex flex-col md:flex-row justify-between items-center gap-6">
               <div className="flex gap-8 text-sm text-gray-600">
-                <a href="#" className="hover:text-gray-900 transition-colors">{t('footer.privacy')}</a>
-                <a href="#" className="hover:text-gray-900 transition-colors">{t('footer.terms')}</a>
-                <a href="#" className="hover:text-gray-900 transition-colors">{t('footer.contact')}</a>
+                <a href="#" className="hover:text-gray-900 transition-colors">
+                  {t("footer.privacy")}
+                </a>
+                <a href="#" className="hover:text-gray-900 transition-colors">
+                  {t("footer.terms")}
+                </a>
+                <a href="#" className="hover:text-gray-900 transition-colors">
+                  {t("footer.contact")}
+                </a>
               </div>
               {/* <div className="flex gap-6">
                 <a href="#" className="text-gray-400 hover:text-gray-600 transition-colors">
@@ -219,5 +259,5 @@ export default function LandingPage() {
         </footer>
       </div>
     </div>
-  )
-} 
+  );
+}

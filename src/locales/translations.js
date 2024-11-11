@@ -59,7 +59,7 @@ export const translations = {
     form: {
       title: 'انضم إلينا',
       namePlaceholder: 'الاسم',
-      emailPlaceholder: 'البريد الإلكتروني',
+      phonePlaceholder: 'رقم الجوال',
       roles: {
         organizer: 'منظم',
         player: 'لاعب',
