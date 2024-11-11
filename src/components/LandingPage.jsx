@@ -189,6 +189,7 @@ export default function LandingPage() {
                     pattern="[0-9]*"
                     placeholder={t("form.phonePlaceholder")}
                     required
+                    dir="rtl"
                     className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all"
                     value={formData.phone}
                     onChange={(e) =>
